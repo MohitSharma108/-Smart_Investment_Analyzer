@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Investment Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stellar-sdk"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-line"></i> Smart Investment Analyzer</h1>
+            <p class="subtitle">Real-time market analysis and Stellar network insights</p>
+        </header>
+        
+        <main>
+            <div class="dashboard">
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="assetType"><i class="fas fa-coins"></i> Asset Type:</label>
+                        <select id="assetType">
+                            <option value="bitcoin">Bitcoin (BTC)</option>
+                            <option value="ethereum">Ethereum (ETH)</option>
+                            <option value="cardano">Cardano (ADA)</option>
+                            <option value="solana">Solana (SOL)</option>
+                            <option value="stellar">Stellar (XLM)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="timeSpan"><i class="fas fa-clock"></i> Time Period:</label>
+                        <select id="timeSpan">
+                            <option value="1">1 Day</option>
+                            <option value="7">7 Days</option>
+                            <option value="30">30 Days</option>
+                            <option value="90">90 Days</option>
+                            <option value="180">180 Days</option>
+                            <option value="365">1 Year</option>
+                        </select>
+                    </div>
+
+                    <button id="refreshBtn" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh Data
+                    </button>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+
+                <div class="asset-info">
+                    <div class="info-header">
+                        <h2 id="assetName">Bitcoin</h2>
+                        <div class="price-change" id="priceChangeContainer">
+                            <span id="priceChange">0.00%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="price-info">
+                        <div class="info-card">
+                            <i class="fas fa-dollar-sign"></i>
+                            <p>Current Price</p>
+                            <span id="currentPrice">$0.00</span>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-chart-pie"></i>
+                            <p>Market Cap</p>
+                            <span id="marketCap">$0.00</span>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-exchange-alt"></i>
+                            <p>24h Volume</p>
+                            <span id="volume">$0.00</span>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-fire"></i>
+                            <p>24h High</p>
+                            <span id="high24h">$0.00</span>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-arrow-down"></i>
+                            <p>24h Low</p>
+                            <span id="low24h">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stellar-section">
+                    <div class="stellar-info">
+                        <h3><i class="fas fa-star"></i> Stellar Network Info</h3>
+                        <div class="stellar-stats">
+                            <div class="stat-card">
+                                <p>Network Status</p>
+                                <span id="stellarStatus">Loading...</span>
+                            </div>
+                            <div class="stat-card">
+                                <p>Ledger Height</p>
+                                <span id="ledgerHeight">Loading...</span>
+                            </div>
+                            <div class="stat-card">
+                                <p>Base Fee</p>
+                                <span id="baseFee">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stellar-actions">
+                        <h3><i class="fas fa-cogs"></i> Stellar Actions</h3>
+                        <div class="action-buttons">
+                            <button id="createAccountBtn" class="action-btn">
+                                <i class="fas fa-user-plus"></i> Create Account
+                            </button>
+                            <button id="checkBalanceBtn" class="action-btn">
+                                <i class="fas fa-wallet"></i> Check Balance
+                            </button>
+                            <button id="sendPaymentBtn" class="action-btn">
+                                <i class="fas fa-paper-plane"></i> Send Payment
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="stellar-form" id="stellarForm">
+                        <div class="form-group">
+                            <label for="publicKey">Public Key:</label>
+                            <input type="text" id="publicKey" placeholder="Enter public key">
+                        </div>
+                        <div class="form-group">
+                            <label for="secretKey">Secret Key:</label>
+                            <input type="password" id="secretKey" placeholder="Enter secret key">
+                        </div>
+                        <div class="form-group">
+                            <label for="destinationKey">Destination Key:</label>
+                            <input type="text" id="destinationKey" placeholder="Enter destination key">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount (XLM):</label>
+                            <input type="number" id="amount" placeholder="Enter amount">
+                        </div>
+                        <button id="submitStellarBtn" class="submit-btn">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
